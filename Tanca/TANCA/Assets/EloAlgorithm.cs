@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class EloAlgorithm : Singleton<EloAlgorithm>
 {
-    // Start is called before the first frame update
-    void Start()
+    void GetNewElo(Player player1, Player player2, int player1Score, int player2Score)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
