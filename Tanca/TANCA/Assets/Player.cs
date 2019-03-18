@@ -1,4 +1,6 @@
-﻿public class Player
+﻿
+[System.Serializable]
+public class Player
 {
     public string playerName;
     public float mmr = 1000;
