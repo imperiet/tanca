@@ -1391,8 +1391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edf7419c5711124aad5464413aea478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
-  addButton: {fileID: 0}
+  players: []
+  inputField: {fileID: 512180825}
+  addButton: {fileID: 892643030}
 --- !u!1 &944268198
 GameObject:
   m_ObjectHideFlags: 0
