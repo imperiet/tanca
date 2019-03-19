@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EloAlgorithm : Singleton<EloAlgorithm>
 {
-    void GetNewElo(Player player1, Player player2, int pointsPlayer1, int pointsPlayer2)
+    public void GetNewElo(Player player1, Player player2, int pointsPlayer1, int pointsPlayer2)
     {
         float player1Score = 0.5f, player2Score = 0.5f, player1EScore, player2EScore;
 
@@ -34,6 +34,5 @@ public class EloAlgorithm : Singleton<EloAlgorithm>
 
         player1.gamesPlayed ++;
         player2.gamesPlayed++;
-
     }
 }
