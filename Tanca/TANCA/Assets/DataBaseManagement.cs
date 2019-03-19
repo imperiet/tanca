@@ -16,8 +16,7 @@ public class DataBaseManagement : Singleton<DataBaseManagement>
     {
 
     }
-
-
+    
     public void NewPlayer(string userName)
     {
         path = AssetDatabase.GetAssetPath(file);
@@ -65,7 +64,7 @@ public class DataBaseManagement : Singleton<DataBaseManagement>
 
 
         string[] lines = System.IO.File.ReadAllLines(path);
-        lines[lineNumber] = player.playerName + "," + player.mmr + "," + player.gamesPlayed;
+        lines[lineNumber] = player.playerName + "," + player.mmr.ToString().Replace(",",".") + "," + player.gamesPlayed;
 
         StreamWriter sw = new StreamWriter(path, false);
 
@@ -104,6 +103,6 @@ public class DataBaseManagement : Singleton<DataBaseManagement>
             Debug.Log(str);
         }
 
-        return new Player (playerData[0],float.Parse(playerData[1]),int.Parse(playerData[2]));
+        return new Player (playerData[0],float.Parse(playerData[1].Replace(".",",")),int.Parse(playerData[2]));
     }
 }

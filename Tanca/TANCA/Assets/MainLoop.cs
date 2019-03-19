@@ -9,26 +9,10 @@ public class MainLoop : MonoBehaviour
 
     public void EnterResults()
     {
-        player1 = null;
-        player2 = null;
+        player1 = DataBaseManagement.Instance.GetPlayerInfo(player1field.text.ToLower());
+        player2 = DataBaseManagement.Instance.GetPlayerInfo(player2field.text.ToLower());
 
-        foreach (Player player in PlayerMangare.Instance.players)
-        {
-            if (player.playerName.ToLower() == player1field.text.ToLower())
-            {
-                player1 = player;
-            }
-            else if (player.playerName.ToLower() == player2field.text.ToLower())
-            {
-                player2 = player;
-            }
-        }
-
-        if (player1 == null || player2 == null)
-        {
-            Debug.LogError("One or more of these players do not exist");
-        }
-        else PerformCalculations(player1, player2);
+        PerformCalculations(player1, player2);
     }
 
     private void PerformCalculations(Player p1, Player p2)

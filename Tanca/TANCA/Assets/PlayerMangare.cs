@@ -14,7 +14,7 @@ public class PlayerMangare : Singleton<PlayerMangare>
         addButton.onClick.AddListener(delegate { AttemptAdd(); });
     }
 
-    private void AttemptAdd()
+    public void AttemptAdd()
     {
         print("adding");
         if (inputField.text != "")
@@ -25,23 +25,6 @@ public class PlayerMangare : Singleton<PlayerMangare>
 
     public void AddNewPlayer(string _playerName)
     {
-        if (players.Count > 0)
-        {
-            foreach (Player player in players)
-            {
-                if (player.playerName == _playerName)
-                {
-                    Debug.LogError("That name is taken :(");
-                    return;
-                }
-            }
-        }
-
-        //players.Add(new Player(_playerName));
-    }
-
-    public void UpdatePlayerCount()
-    {
-
+        DataBaseManagement.Instance.NewPlayer(_playerName);
     }
 }
