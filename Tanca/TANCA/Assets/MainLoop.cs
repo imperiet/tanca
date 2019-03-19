@@ -9,27 +9,30 @@ public class MainLoop : MonoBehaviour
 
     public void EnterResults()
     {
+        player1 = null;
+        player2 = null;
+
         foreach (Player player in PlayerMangare.Instance.players)
         {
-            if (player.playerName == player1field.text)
+            if (player.playerName.ToLower() == player1field.text.ToLower())
             {
                 player1 = player;
-                Debug.Log(player1.playerName + "vs" + player2.playerName);
             }
-            else if (player.playerName == player2field.text)
+            else if (player.playerName.ToLower() == player2field.text.ToLower())
             {
                 player2 = player;
-                Debug.Log(player1.playerName + " vs " + player2.playerName);
-                
             }
-            else { Debug.Log("One or more of these players do not exist"); return; }
-
-            PerformCalculations(player1,player2);
         }
+
+        if (player1 == null || player2 == null)
+        {
+            Debug.LogError("One or more of these players do not exist");
+        }
+        else PerformCalculations(player1, player2);
     }
 
     private void PerformCalculations(Player p1, Player p2)
     {
-        EloAlgorithm.Instance.GetNewElo(p1,p2, (int)s1.value,(int)s2.value);
+        EloAlgorithm.Instance.GetNewElo(p1, p2, (int)s1.value, (int)s2.value);
     }
 }
