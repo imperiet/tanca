@@ -37,7 +37,7 @@ public class PlayerMangare : Singleton<PlayerMangare>
             }
         }
 
-        players.Add(new Player(_playerName));
+        //players.Add(new Player(_playerName));
     }
 
     public void UpdatePlayerCount()
