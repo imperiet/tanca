@@ -2,7 +2,7 @@
 
 public class EloAlgorithm : Singleton<EloAlgorithm>
 {
-    public void GetNewElo(Player player1, Player player2, int pointsPlayer1, int pointsPlayer2)
+    public void UpdateElo(Player player1, Player player2, int pointsPlayer1, int pointsPlayer2)
     {
         float player1Score, player2Score, player1EScore, player2EScore;
 
@@ -10,8 +10,8 @@ public class EloAlgorithm : Singleton<EloAlgorithm>
 
         float minimumScoreForAWin = 0.75f;
 
-        Player p1 = DataBaseManagement.Instance.GetPlayerInfo(player1.playerName);
-        Player p2 = DataBaseManagement.Instance.GetPlayerInfo(player2.playerName);
+        Player p1 = DataBaseAccessor.Instance.GetPlayerData(player1.userName);
+        Player p2 = DataBaseAccessor.Instance.GetPlayerData(player2.userName);
 
         //calaculates player1 and player2's scores from the points in the game to a value between 1 and 0
         if (pointsPlayer1 - pointsPlayer2 > 0)
@@ -43,12 +43,12 @@ public class EloAlgorithm : Singleton<EloAlgorithm>
         player1.gamesPlayed++;
         player2.gamesPlayed++;
 
-        Player tempPlayer1 = new Player(player1.playerName, p1mmr, player1.gamesPlayed);
-        Player tempPlayer2 = new Player(player2.playerName, p2mmr, player2.gamesPlayed);
+        Player tempPlayer1 = new Player(player1.userName, p1mmr, player1.gamesPlayed,0);
+        Player tempPlayer2 = new Player(player2.userName, p2mmr, player2.gamesPlayed,0);
 
-        
+        Debug.Log(p1mmr+"__"+p2mmr);
 
-        DataBaseManagement.Instance.UpdatePlayerInfo(tempPlayer1);
-        DataBaseManagement.Instance.UpdatePlayerInfo(tempPlayer2);
+        DataBaseAccessor.Instance.UpdatePlayerData(tempPlayer1);
+        DataBaseAccessor.Instance.UpdatePlayerData(tempPlayer2);
     }
 }
