@@ -9,9 +9,26 @@ public class DataBaseAccessor : Singleton<DataBaseAccessor>
     public TextAsset dataFile;
     private string dataPath;
 
-    private void Start()
+    private void Awake()
     {
         dataPath = AssetDatabase.GetAssetPath(dataFile);
+    }
+
+    public List<Player> GetAllPlayers()
+    {
+        List<Player> allPlayers = new List<Player>();
+
+        StreamReader reader = new StreamReader(dataPath);
+
+        while (!reader.EndOfStream)
+        {
+            string playerDataLine = reader.ReadLine();
+            string[] playerData = playerDataLine.Split(',');
+
+            allPlayers.Add(new Player(playerData[0], float.Parse(playerData[1].ToString().Replace(".", ",")), int.Parse(playerData[2]), float.Parse(playerData[3])));
+        }
+        reader.Close();
+        return allPlayers;
     }
 
     public Player GetPlayerData(string userNameToFind)
@@ -73,7 +90,7 @@ public class DataBaseAccessor : Singleton<DataBaseAccessor>
         AssetDatabase.Refresh();
     }
 
-    public void AddNewPlayer(string userName)
+    public Player AddNewPlayer(string userName)
     {
         StreamReader sr = new StreamReader(dataPath);
 
@@ -83,7 +100,7 @@ public class DataBaseAccessor : Singleton<DataBaseAccessor>
             {
                 Debug.Log("That username already exist");
                 sr.Close();
-                return;
+                return null;
             }
         }
 
@@ -95,6 +112,10 @@ public class DataBaseAccessor : Singleton<DataBaseAccessor>
         sw.WriteLine(userName + ",1000,0,0");
         sw.Close();
 
+
+
         AssetDatabase.Refresh();
+
+        return new Player(userName,1000,0,0);
     }
 }

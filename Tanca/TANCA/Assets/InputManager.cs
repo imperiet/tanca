@@ -42,8 +42,10 @@ public class InputManager : Singleton<InputManager>
     {
         if (_addPlayerField.text != "")
         {
-            DataBaseAccessor.Instance.AddNewPlayer(_addPlayerField.text);
+            ScoreBoardPositioner.Instance.AddNewPlayer(DataBaseAccessor.Instance.AddNewPlayer(_addPlayerField.text));
+            ScoreBoardPositioner.Instance.UpdateRating();
         }
+
     }
 
     private void EnterMatchResults()
@@ -56,6 +58,8 @@ public class InputManager : Singleton<InputManager>
         if (p1 != null && p2 != null)
         {
             EloAlgorithm.Instance.UpdateElo(p1, p2, (int)_player1Slider.value, (int)_player2Slider.value);
+
+            ScoreBoardPositioner.Instance.UpdateRating();
         }
     }
 }
