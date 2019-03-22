@@ -68,7 +68,6 @@ public class DataBaseAccessor : Singleton<DataBaseAccessor>
 
         while (run && playerIndex < wholeDocument.Length)
         {
-            Debug.Log("wholeDocument[playerIndex]: " + wholeDocument[playerIndex]);
             if (wholeDocument[playerIndex].Contains(player.userName + ","))
             {
                 run = false;

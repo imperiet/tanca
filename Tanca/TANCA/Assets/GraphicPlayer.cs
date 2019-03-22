@@ -16,7 +16,7 @@ public class GraphicPlayer : MonoBehaviour
     {
         playerData = player;
         _playerName.text = player.userName;
-        _mmr.text = ""+player.mmr;
+        _mmr.text = ""+Mathf.Round(player.mmr);
         _gamesPlayed.text = ""+player.gamesPlayed;
     }
 }
